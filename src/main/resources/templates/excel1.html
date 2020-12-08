@@ -1,0 +1,54 @@
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>excel多表格统计</title>
+    <style>
+        input[type=text]{
+            font-size: 14px;
+            line-height: 16px;
+            height: 40px;
+            padding: 10px 8px;
+            margin: 10px;
+            width: 100%;
+            outline:none;
+            border: 1px solid #ccc;
+            border-radius: 19px;
+        }
+
+        input[type=text]:focus{
+            border: 1px solid red;
+            box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.3) inset;
+        }
+        .mainDiv{
+            width: 50%;
+            height: 50%;
+            margin: 10% 0% 0 25%;
+        }
+
+    </style>
+</head>
+
+<body>
+<form action="/excel/addAll" method="post" enctype="multipart/form-data" >
+    <div class="mainDiv">
+        <input type="text" name="compareCols"  placeholder="请输入每个sheet 要对比的列序号 逗号隔开  例两个sheet：1，2"/>
+        <input type="text" name="addCols"  placeholder="请输入每个sheet 要添加的列序号 逗号隔开  例两个sheet：1，2"/>
+        <input type="text" name="templateName"  placeholder="生成的文件名称"/>
+        <div style="margin: 20px 0 0 15px">
+            <div style="margin: 0px 0px 20px 0">
+                <span>模板首个文件:</span>
+                <input  type="file" multiple="multiple" name="template" placeholder=""/>
+            </div>
+            <div style="margin: 0px 0px 20px 0">
+                <span>添加数据文件:</span>
+                <input  type="file" multiple="multiple" name="addFiles" placeholder="添加数据文件"/>
+            </div>
+            <div>
+                <input type="submit" style="margin: 30px 0px 0px 50%;height: 50;width: 80;" >
+            </div>
+        </div>
+    </div>
+</form>
+</body>
