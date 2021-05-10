@@ -3,14 +3,11 @@ package com.cp.excel.controller;
 import com.cp.excel.util.ExcelUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,9 +28,9 @@ public class ExcelController {
     @RequestMapping(value="addAll",method= RequestMethod.POST)
     @ResponseBody
     public String addAll(String compareCols , String addCols, String templateName ,MultipartFile template, List<MultipartFile> addFiles) throws Exception {
-        String TemplatePathName = ExcelUtil.getCopyTemplate(template,templateName+System.currentTimeMillis(), Arrays.asList(4,4));
-        List<Integer> compareColList = convertStrToList(compareCols);
         List<Integer> addColList = convertStrToList(addCols);
+        String TemplatePathName = ExcelUtil.getCopyTemplate(template,templateName+System.currentTimeMillis(), addColList);
+        List<Integer> compareColList = convertStrToList(compareCols);
         List<Integer> allcolList = ExcelUtil.getAllColsAddOne(addColList);
         File tempalterFile = new File(TemplatePathName);
         //按照名称排序
